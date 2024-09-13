@@ -1,0 +1,92 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.math.BigDecimal;
+
+public class NumberOperations {
+	public static void main(String[] args) {
+	
+       ArrayList<Number> numbers = new ArrayList<Number>(Arrays.asList(10, 20.5, 30, 40.7, 50, 60.3, 70, 80.1, 90, 100.9));
+       ArrayList<Number> old_numbers = (ArrayList<Number>)numbers.clone();
+       
+       byte a = 1; 
+       short b = 3; 
+       int c = 4;
+       long f = 100L; 
+       float d = 3.141f;
+       double e = 5.5433d;    
+       BigDecimal g = new BigDecimal("66.6");
+       
+       Collections.addAll(numbers,a, b, c, d, e, f, g);
+       
+       
+       System.out.println("Всі числа: " + numbers);
+       
+       
+       System.out.print("Виведення чисел у форматі цілих чисел: ");
+       for(int i = 0; i < numbers.size(); i ++) {
+    	   int comas = numbers.size() - i - 1;
+   			if(comas > 0) {
+   				System.out.print(numbers.get(i).intValue() + ", ");
+   			}
+   			else
+   				System.out.print(numbers.get(i).intValue());
+       }
+       
+       
+       System.out.println("");
+       
+       
+       System.out.print("Виведення чисел у форматі дробних чисел з 2ма знаками після коми (точки): ");
+       for(int i = 0; i < numbers.size() ; i++ ) {
+    	   int comas = numbers.size() - i - 1;
+   				float t = numbers.get(i).floatValue();
+   				if(comas > 0) {
+   					System.out.printf("%.2f", t);
+   					System.out.print(", ");
+   				}
+   				else
+   					System.out.printf("%.2f", t);
+	}
+       
+       System.out.println("");
+       
+       ArrayList<Byte> byte_numbers = new ArrayList<Byte>();
+       ArrayList<Short> short_numbers = new ArrayList<Short>();
+       ArrayList<Integer> int_numbers = new ArrayList<Integer>();
+       ArrayList<Long> long_numbers = new ArrayList<Long>();
+       ArrayList<Float> float_numbers = new ArrayList<Float>();
+       ArrayList<Double> double_numbers = new ArrayList<Double>();
+       ArrayList<BigDecimal> bigdecimal_numbers = new ArrayList<BigDecimal>();       
+       for(int i = 0; i < numbers.size(); i ++) {
+    	   String expr = ((Object)numbers.get(i)).getClass().getName();
+    	   switch(expr) {
+    	   		case "java.lang.Byte":
+    	   			byte_numbers.add(Byte.valueOf((byte) numbers.get(i)));
+    	   		case "java.lang.Short":
+    	   			short_numbers.add(Short.valueOf((short) numbers.get(i)));
+    	   		case "java.lang.Long":
+    	   			long_numbers.add(Long.valueOf((long) numbers.get(i)));
+    	   		case "java.lang.Float":
+    	   			float_numbers.add(Float.valueOf((float) numbers.get(i)));
+    	   		//case "java.lang.Double":
+    	   			//double_numbers.add(Double.valueOf((double) numbers.get(i)));
+    	   		case "java.lang.BigDecimal":
+    	   			BigDecimal temp = new BigDecimal(numbers.get(i).toString());
+    	   			bigdecimal_numbers.add(temp);
+    	   		default:
+    	   			int_numbers.add(Integer.valueOf((int) numbers.get(i)));    	   				  
+       }
+       }       
+       
+       /*
+       ArrayList<Integer> old_int_numbers = new ArrayList<Integer>(); //6      
+       for(int i = 0; i < old_numbers.size(); i ++) {
+    	   String expr = ((Object)old_numbers.get(i)).getClass().getName();
+    	   if(expr == "java.lang.Integer") {
+    		   old_int_numbers.add(old_numbers.get(i).intValue());
+    	   }
+       }
+       */
+}
+}
